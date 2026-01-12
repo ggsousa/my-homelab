@@ -1,24 +1,41 @@
-# 🍎 Native Hackintosh Build: macOS Sequoia 15.7.3
+📊 System Status (Proxmox 9.1.4)
 
-This folder documents my native (bare metal) Hackintosh setup. This is my secondary workstation, built on the Intel HEDT (High-End Desktop) platform for stability and macOS testing.
+Currently operating a high-performance mixed cluster, managing LXC containers for core network services and VMs for testing/dev environments.
 
-## 🖥️ Hardware Specifications
-- **CPU**: Intel Core i7-7820x (Skylake-X) overclocked to 4.5 - 4.8GHz.
-- **Motherboard**: AORUS X299 Gaming 7.
-- **GPU**: ASUS Radeon RX 580 8GB (Native OOB support).
-- **Memory**: 32GB (4x8GB) DDR4 3200MHz.
-- **OS**: macOS Sequoia 15.7.3 (Dual boot with Windows 11).
+🖥️ Hardware Fleet
 
-## 🛠️ Build Details
-- **Bootloader**: OpenCore.
-- **Platform ID**: iMacPro1,1 (even the sequoia) or MacPro7,1 (Tahoe).
-- **Storage**: Dedicated 360GB SATA SSD, NVMe 512GB Windows 11.
+Machine	Specs	OS / Role
+Main Station	Ryzen 7 9800x3D - RTX 3060 TI	Windows 11 / Gaming & Work
+Server (PVE)	Xeon 2680V4 - 64GB ECC	Proxmox VE / Core Infrastructure
+Lab/Hackintosh	i7 7820x (X299) - RX 580 8GB	macOS Sequoia / Windows 11
+Media/Console	Ryzen 7 5700x - RX 5700 XT	Win11 / Emulation & Gamming on TV
+🛠️ Active Services (Self-Hosted)
 
-## 🔧 X299 Specific Configuration
-Running macOS on X299 requires specific attention to:
-- **TSC Sync**: Using `CpuTscSync` to prevent kernel panics on multi-core Skylake-X CPUs.
-- **ACPI Patches**: Custom SSDTs for RTC, HPET, and USB mapping (essential for X299).
-- **MSR 0xE2**: BIOS is unlocked to allow native power management without `AppleCpuPmCfgLock`.
+🌐 Core Network & Security
 
----
-> **Note**: This setup is for educational purposes. Always refer to the [Dortania OpenCore Guide](https://dortania.github.io/OpenCore-Install-Guide/) as your primary source of truth.
+AdGuard Home: DNS filtering and network-wide ad blocking.
+Nginx Proxy Manager: Reverse proxy and SSL management.
+Vaultwarden: Self-hosted password management.
+WireGuard VPN: Secure remote access.
+TP-Link Omada Controller: Centralized network management (ER605 + EAPs).
+🎬 Media Center (The *Arr Stack)
+
+Plex Media Server: High-quality media streaming.
+Radarr / Sonarr / Jackett: Automated movie and TV show library management.
+qBittorrent: Integrated download client.
+🏠 Automation & Monitoring
+
+Home Assistant: Smart home brain (Lights, Soil Sensors, Garden monitoring).
+Frigate: AI-powered NVR for security cameras.
+Grafana + Prometheus: System telemetry and dashboards.
+Uptime Kuma: Service uptime and health monitoring.
+🧪 Pentest & Dev Lab (Proxmox)
+
+OS Testing: Kali Linux, Parrot Security, Arch Linux, Mint, Ubuntu, Zorin.
+Legacy Lab: Windows 7, Windows 8, Windows 10 (v1507).
+Game Server: Crafty Control (Minecraft Server management).
+📂 Repository Structure
+
+/docker-compose: YAML configuration files for containers.
+/proxmox: Optimization scripts and PVE notes.
+/automation: Home Assistant blueprints and configs.
