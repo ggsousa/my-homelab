@@ -8,10 +8,10 @@ Currently operating a high-performance mixed cluster, managing LXC containers fo
 ### 🖥️ Hardware Fleet
 | Machine | Specs | OS / Role |
 | :--- | :--- | :--- |
-| **Main Station** | Ryzen 7 9800x3D | RTX 3060 TI | Windows 11 / Gaming & Work |
-| **Server (PVE)** | Xeon 2680V4 | 64GB ECC | Proxmox VE / Core Infrastructure |
-| **Lab/Hackintosh** | i7 7820x (X299) | RX 580 8GB | macOS Sequoia / Windows 11 |
-| **Media/Console** | Ryzen 7 5700x | RX 5700 XT | Win11 / Emulation & Gamming on TV |
+| **Main Station** | Ryzen 7 9800x3D - RTX 3060 TI | Windows 11 / Gaming & Work |
+| **Server (PVE)** | Xeon 2680V4 - 64GB ECC | Proxmox VE / Core Infrastructure |
+| **Lab/Hackintosh** | i7 7820x (X299) - RX 580 8GB | macOS Sequoia / Windows 11 |
+| **Media/Console** | Ryzen 7 5700x - RX 5700 XT | Win11 / Emulation & Gamming on TV |
 
 ---
 
