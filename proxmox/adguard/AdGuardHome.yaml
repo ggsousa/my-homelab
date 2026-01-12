@@ -1,0 +1,64 @@
+# AdGuard Home Configuration - g HomeLab
+# This file contains DNS settings, blocklists, and local rewrites.
+
+http:
+  address: 0.0.0.0:3000
+  session_ttl: 720h
+users:
+  - name: <YOUR_USERNAME>
+    password: <ENCRYPTED_PASSWORD_HASH_REMOVED> # Never share your hash publicly
+
+language: pt-br
+theme: dark
+
+dns:
+  bind_hosts:
+    - 0.0.0.0
+  port: 53
+  upstream_dns:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  bootstrap_dns:
+    - 9.9.9.10
+    - 149.112.112.10
+    - 2620:fe::10
+    - 2620:fe::fe:10
+  cache_size: 4194304
+  cache_optimistic: false
+
+# High-performance blocklists used in this setup
+filters:
+  - enabled: true
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt
+    name: OISD Blocklist Big
+    id: 1755835931
+  - enabled: true
+    url: https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/ultimate.txt
+    name: hagezi ultimate
+    id: 1765747670
+
+# Internal HomeLab Domain Rewrites
+# Mapping local services to the internal Reverse Proxy or Service IP
+filtering:
+  rewrites_enabled: true
+  rewrites:
+    - domain: home.home
+      answer: 192.168.0.X
+    - domain: plex.home
+      answer: 192.168.0.X
+    - domain: dns.home
+      answer: 192.168.0.X
+    - domain: torrent.home
+      answer: 192.168.0.X
+    - domain: craft.home
+      answer: 192.168.0.X
+    - domain: proxmox.home
+      answer: 192.168.0.X
+    - domain: proxy.home
+      answer: 192.168.0.X
+    - domain: roteador.home
+      answer: 192.168.0.X
+    - domain: vault.home
+      answer: 192.168.0.X
+
+schema_version: 32
