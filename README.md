@@ -15,34 +15,27 @@ Currently operating a high-performance mixed cluster, managing LXC containers fo
 
 ---
 
-## 🛠️ Active Services (Self-Hosted)
+## 📂 Repository Structure
 
-### 🌐 Core Network & Security
-- **AdGuard Home:** DNS filtering and network-wide ad blocking.
-- **Nginx Proxy Manager:** Reverse proxy and SSL management.
-- **Vaultwarden:** Self-hosted password management.
-- **WireGuard VPN:** Secure remote access.
-- **TP-Link Omada Controller:** Centralized network management (ER605 + EAPs).
+I've organized my lab into logical categories for better maintainability and documentation:
 
-### 🎬 Media Center (The *Arr Stack)
-- **Plex Media Server:** High-quality media streaming.
-- **Radarr / Sonarr / Jackett:** Automated movie and TV show library management.
-- **qBittorrent:** Integrated download client.
-
-### 🏠 Automation & Monitoring
-- **Home Assistant:** Smart home brain (Lights, Soil Sensors, Garden monitoring).
-- **Frigate:** AI-powered NVR for security cameras.
-- **Grafana + Prometheus:** System telemetry and dashboards.
-- **Uptime Kuma:** Service uptime and health monitoring.
-
-### 🧪 Pentest & Dev Lab (Proxmox)
-- **OS Testing:** Kali Linux, Parrot Security, Arch Linux, Mint, Ubuntu, Zorin.
-- **Legacy Lab:** Windows 7, Windows 8, Windows 10 (v1507).
-- **Game Server:** Crafty Control (Minecraft Server management).
+- **[🛡️ Network & Security](./proxmox/network-security)**: AdGuard Home (DNS), WireGuard (VPN), and TP-Link Omada Controller.
+- **[🎬 Media Center](./proxmox/media-center)**: Plex Media Server and the full *Arr stack (Radarr, Sonarr, Jackett, qBit).
+- **[🧪 Dev-Lab & Testing](./proxmox/dev-lab)**: Kali Linux, Arch Linux, and Crafty Controller for game servers.
+- **[💾 Backup Strategy](./proxmox/backups)**: My automated data protection and retention policies.
+- **[🍎 Hackintosh Build](./hackintosh)**: Detailed setup for running macOS Sequoia natively on X299.
+- **[🏠 Automation](./proxmox/automation-monitoring)**: (In Progress) Home Assistant dashboards and monitoring.
 
 ---
 
-## 📂 Repository Structure
-- `/docker-compose`: YAML configuration files for containers.
-- `/proxmox`: Optimization scripts and PVE notes.
-- `/automation`: Home Assistant blueprints and configs.
+## 🛠️ Infrastructure Overview
+
+### Networking
+My network is powered by the **TP-Link Omada** ecosystem (ER605 Gateway) and a 1GB link. I focus on network-wide ad blocking via AdGuard and secure remote access through WireGuard.
+
+### Monitoring & Energy
+I use **Home Assistant** to monitor system health and energy consumption. 
+- **Current Load**: ~12 Containers and 3 VMs active. (24/7)
+- **Energy Tracking**: Real-time wattage monitoring for the Server and Main Setup via smart sockets.
+
+---
