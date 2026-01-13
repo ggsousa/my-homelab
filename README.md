@@ -1,4 +1,4 @@
-# 🏠 ggsousa | HomeLab & Infrastructure
+# 🏠 g | HomeLab & Infrastructure
 
 Welcome to my HomeLab documentation. This repository tracks my journey managing virtualization, networking, and home automation across multiple hardware platforms.
 
