@@ -1,50 +1,26 @@
-# 🏠 g | HomeLab & Infrastructure
+# 🛡️ Network & Security Stack
 
-Welcome to my HomeLab documentation. This repository tracks my journey managing virtualization, networking, and home automation across multiple hardware platforms.
+This folder contains the configuration and logic for my core network infrastructure. My goal is to maintain a high-performance, secure, and ad-free environment using a mix of dedicated hardware and Proxmox-hosted services.
 
-## 📊 System Status (Proxmox 9.1.4)
-Currently operating a high-performance mixed cluster, managing LXC containers for core network services and VMs for testing/dev environments.
+## 🌐 Network Logic & Flow
+The network architecture is designed around the **TP-Link Omada** ecosystem:
 
-### 🖥️ Hardware Fleet
-| Machine | Specs | OS / Role |
+1. **Gateway**: A **TP-Link ER605** handles the main routing and DHCP.
+2. **DNS Delegation**: The DHCP server is configured to point all clients to **AdGuard Home** (LXC 100) as the primary DNS provider.
+3. **Filtering**: AdGuard Home filters network-wide ads and trackers using high-performance blocklists (OISD, Hagezi).
+4. **External Access**: 
+   - **WireGuard (LXC 116)**: Provides secure remote access to the local network.
+   - **Nginx Proxy Manager (LXC 109)**: Manages internal service domains (e.g., `proxmox.home`, `plex.home`) and SSL certificates.
+
+## 📦 Services in this Section
+
+| Service | ID (LXC) | Description |
 | :--- | :--- | :--- |
-| **Main Station** | Ryzen 7 9800x3D - RTX 3060TI | Windows 11 Pro / Gaming & Work |
-| **Server (PVE)** | Xeon 2680V4 - 64GB ECC | Proxmox VE / Core Infrastructure |
-| **Lab/Hackintosh** | i7 7820x (X299) - RX 580 8GB | macOS Sequoia / Windows 11 |
-| **Media/Console** | Ryzen 7 5700x - RX 5700XT | Win11 / Emulation & Gaming on TV |
+| **AdGuard Home** | 100 | Primary DNS with DoH (DNS over HTTPS) and network-wide blocking. |
+| **WireGuard** | 116 | High-speed VPN for secure remote management. |
+| **Omada Controller** | 123 | Central management for the ER605 and upcoming EAP653 Access Points. |
+| **Proxy Manager** | 109 | Internal routing for local services with user-friendly hostnames. |
+| **Vaultwarden** | 115 | Self-hosted password management for all lab services. |
 
----
-
-## 🛠️ Active Services (Self-Hosted)
-
-### 🌐 Core Network & Security
-- **AdGuard Home:** DNS filtering and network-wide ad blocking.
-- **Nginx Proxy Manager:** Reverse proxy and SSL management.
-- **Vaultwarden:** Self-hosted password management.
-- **WireGuard VPN:** Secure remote access.
-- **TP-Link Omada Controller:** Centralized network management (ER605 + EAPs).
-
-### 🎬 Media Center (The *Arr Stack)
-- **Plex Media Server:** High-quality media streaming.
-- **Radarr / Sonarr / Jackett:** Automated movie and TV show library management.
-- **qBittorrent:** Integrated download client.
-
-### 🏠 Automation & Monitoring
-- **Home Assistant:** Smart home brain (Lights, Soil Sensors, Garden monitoring).
-- **Frigate:** AI-powered NVR for security cameras.
-- **Grafana + Prometheus:** System telemetry and dashboards.
-- **Uptime Kuma:** Service uptime and health monitoring.
-
-### 🧪 Pentest & Dev Lab
-- **OS Testing:** Kali Linux, Parrot Security, Arch Linux, Mint, Ubuntu, Zorin.
-- **Legacy Lab:** Windows 7, Windows 8, Windows 10 (v1507).
-- **Game Server:** Crafty Control (Minecraft Server management).
-
----
-
-## 📂 Repository Structure
-- `/docker-compose`: YAML configuration files for containers.
-- `/proxmox`: Optimization scripts and PVE notes.
-- `/automation`: Home Assistant blueprints and configs.
-
-++++++++++++++++++++++++++++
+## 🛠️ Upcoming Upgrades
+- **Wi-Fi Migration**: Currently using Deco X50s in AP mode, migrating to **2x TP-Link EAP653** for better integration with the Omada Controller and VLAN management.
