@@ -1,6 +1,7 @@
 # 🍎 Native Hackintosh Build: macOS Sequoia 15.7.3
 
-This folder documents my native (bare metal) Hackintosh setup. This is my secondary workstation, built on the Intel HEDT (High-End Desktop) platform for stability and macOS testing.
+This folder documents my native (bare metal) Hackintosh setup.
+This is my secondary workstation, built on the Intel HEDT (High-End Desktop) platform for stability and macOS testing.
 
 ## 🖥️ Hardware Specifications
 - **CPU**: Intel Core i7-7820x (Skylake-X) overclocked to 4.8GHz.
@@ -19,3 +20,5 @@ Running macOS on X299 requires specific attention to:
 - **TSC Sync**: Using `CpuTscSync` to prevent kernel panics on multi-core Skylake-X CPUs.
 - **ACPI Patches**: Custom SSDTs for RTC, HPET, and USB mapping (essential for X299).
 - **MSR 0xE2**: BIOS is unlocked to allow native power management without `AppleCpuPmCfgLock`.
+
+> **Note**: This setup is for educational purposes. Always refer to the [Dortania OpenCore Guide](https://dortania.github.io/OpenCore-Install-Guide/) as your primary source of truth.
