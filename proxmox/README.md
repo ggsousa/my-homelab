@@ -1,26 +1,50 @@
-# 🛡️ Network & Security Stack
+# 💽 Proxmox Virtual Environment (PVE)
 
-This folder contains the configuration and logic for my core network infrastructure. My goal is to maintain a high-performance, secure, and ad-free environment using a mix of dedicated hardware and Proxmox-hosted services.
+This directory documents the backbone of my home infrastructure. My environment is optimized for high-availability network services, media automation, and isolated security research laboratories.
 
-## 🌐 Network Logic & Flow
-The network architecture is designed around the **TP-Link Omada** ecosystem:
+## 🏗️ Hardware & Performance
+The primary node utilizes a server-grade HEDT platform to maximize I/O throughput and multi-threaded performance.
 
-1. **Gateway**: A **TP-Link ER605** handles the main routing and DHCP.
-2. **DNS Delegation**: The DHCP server is configured to point all clients to **AdGuard Home** (LXC 100) as the primary DNS provider.
-3. **Filtering**: AdGuard Home filters network-wide ads and trackers using high-performance blocklists (OISD, Hagezi).
-4. **External Access**: 
-   - **WireGuard (LXC 116)**: Provides secure remote access to the local network.
-   - **Nginx Proxy Manager (LXC 109)**: Manages internal service domains (e.g., `proxmox.home`, `plex.home`) and SSL certificates.
+- **CPU:** Intel Xeon E5-2680 v4 (14 Cores / 28 Threads)
+- **RAM:** 64GB DDR4 ECC.
+- **GPU:** GTX 1660Ti (when needed)
+- **Storage Local:** 512GB NVMe.
+- **Storage de Dados:** 2x 1TB HDD em Raid0 para media e backups.
 
-## 📦 Services in this Section
+## 📊 Instance Fleet (VMs & LXC Containers)
 
-| Service | ID (LXC) | Description |
-| :--- | :--- | :--- |
-| **AdGuard Home** | 100 | Primary DNS with DoH (DNS over HTTPS) and network-wide blocking. |
-| **WireGuard** | 116 | High-speed VPN for secure remote management. |
-| **Omada Controller** | 123 | Central management for the ER605 and upcoming EAP653 Access Points. |
-| **Proxy Manager** | 109 | Internal routing for local services with user-friendly hostnames. |
-| **Vaultwarden** | 115 | Self-hosted password management for all lab services. |
+My fleet is strategically split between stable production machines and ephemeral testing environments:
 
-## 🛠️ Upcoming Upgrades
-- **Wi-Fi Migration**: Currently using Deco X50s in AP mode, migrating to **2x TP-Link EAP653** for better integration with the Omada Controller and VLAN management.
+| ID | Name | Role/Status | Type |
+| :--- | :--- | :--- | :--- |
+| **100** | AdGuard | Production - Network DNS & Ad-blocking | LXC |
+| **101** | HomeAssistant | Production - Smart Home Automation | VM |
+| **102** | Plex | Media Server - Hardware Transcoding | VM |
+| **103** | Crafty | Dedicated Game Server Hosting | VM |
+| **104** | Kali | Security & Pentesting Lab | VM |
+| **105** | Jackett | Media Stack - Tracker Indexer | LXC |
+| **106** | qBittorrent | Media Stack - Download Client | LXC |
+| **107** | Radarr | Media Stack - Movie Management | LXC |
+| **108** | Sonarr | Media Stack - TV Show Management | LXC |
+| **109** | Proxy | Nginx Proxy Manager (External Access) | LXC |
+| **110** | Arch | Minimalist Development Environment | VM |
+And others...
+
+## 💾 Storage Management
+I utilize a tiered storage hierarchy to balance speed, reliability, and capacity:
+
+- **local**: Reserved for LXC templates.
+- **local-lvm**: High-performance storage for VM and Container Root FS.
+- **2xHD**: Dedicated mechanical drive for media and backups.
+
+## 🛡️ Backup & Retention Policy
+Data protection is fully automated via the Proxmox Backup Manager with the following specs:
+
+- **Schedule**: Daily at 03:00 AM.
+- **Mode**: `Snapshot` (Ensures zero downtime during backup).
+- **Compression**: `ZSTD` (Fastest compression with optimal CPU usage).
+- **Retention**: "Keep Last: 3" (Maintains the 3 most recent backups per instance).
+- **Note Template**: `{{guestname}} - {{vmid}}` for rapid identification during recovery.
+
+---
+> **Technical Note**: Network isolation is achieved via Linux bridges (`vmbr0`), allowing AdGuard Home to act as the primary DNS sinkhole for all internal traffic.
