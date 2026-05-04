@@ -1,41 +1,78 @@
-# 🏠 g | HomeLab & Infrastructure
+# 🏠 HomeLab & Infrastructure | *G*
 
-Welcome to my HomeLab documentation. This repository tracks my journey managing virtualization, networking, and home automation across multiple hardware platforms.
+🚀 Self-hosted infrastructure focused on performance, networking, and automation.
 
-## 📊 System Status (Proxmox 9.1.4)
-Currently operating a high-performance mixed cluster, managing LXC containers for core network services and VMs for testing/dev environments.
+This repository documents a real-world homelab environment running virtualization, VLAN segmentation, media services, and smart home integrations.
 
-### 🖥️ Hardware Fleet
-| Machine | Specs | OS / Role |
+---
+
+## 📊 System Status
+
+- 🖥️ **Proxmox VE 9.1.4**
+- 📦 ~15 LXC containers running 24/7
+- 🧠 10+ Virtual Machines (Dev / Testing / Services)
+- 🌐 VLAN-segmented network (Main / IoT / Servers)
+- 🔒 Secure remote access via WireGuard VPN
+
+---
+
+## 🖥️ Hardware Fleet
+
+| Machine | Specs | Role |
 | :--- | :--- | :--- |
-| **Main Station** | Ryzen 7 9800x3D - RTX 3060 TI | Windows 11 / Gaming & Work |
-| **Server (PVE)** | Xeon 2680V4 - 64GB ECC | Proxmox VE / Core Infrastructure |
-| **Lab/Hackintosh** | i7 7820x (X299) - RX 580 8GB | macOS Sequoia / Windows 11 |
-| **Media/Console** | Ryzen 7 5700x - RX 5700 XT | Win11 / Emulation & Gamming on TV |
+| **Main Station** | Ryzen 7 9800X3D • RTX 3060 Ti | Workstation / Gaming |
+| **Server (PVE)** | Xeon E5-2680 v4 • 64GB ECC | Proxmox / Core Infrastructure |
+| **Hackintosh Lab** | i7-7820X (X299) • RX 5700XT • 80GB RAM | macOS Sequoia / Dev |
+| **Media / Console** | Ryzen 7 5700X • RX 580 | Emulation / TV Gaming |
+| **Gaming Ecosystem** | PS5 Slim • PS Portal | Remote Play / Console |
 
 ---
 
 ## 📂 Repository Structure
 
-I've organized my lab into logical categories for better maintainability and documentation:
+The lab is organized into modular components for maintainability and scalability:
 
-- **[🛡️ Network & Security](./proxmox/network-security)**: AdGuard Home (DNS), WireGuard (VPN), and TP-Link Omada Controller.
-- **[🎬 Media Center](./proxmox/media-center)**: Plex Media Server and the full *Arr stack (Radarr, Sonarr, Jackett, qBit).
-- **[🧪 Dev-Lab & Testing](./proxmox/dev-lab)**: Kali Linux, Arch Linux, and Crafty Controller for game servers.
-- **[💾 Backup Strategy](./proxmox/backups)**: My automated data protection and retention policies.
-- **[🍎 Hackintosh Build](./hackintosh)**: Detailed setup for running macOS Sequoia natively on X299.
-- **[🏠 Automation](./proxmox/automation-monitoring)**: (In Progress) Home Assistant dashboards and monitoring.
+- **🛡️ Network & Security**  
+  AdGuard Home (DNS), WireGuard (VPN), TP-Link Omada Controller, VLAN architecture
+
+- **🎬 Media Center**  
+  Plex Media Server + *Arr stack (Radarr, Sonarr, Prowlarr, qBittorrent)
+
+- **🧪 Dev Lab & Testing**  
+  Kali Linux, Arch Linux, Crafty Controller (game servers)
+
+- **💾 Backup Strategy**  
+  Automated backup routines and retention policies
+
+- **🍎 Hackintosh Build**  
+  macOS Sequoia on X299 (OpenCore setup and tweaks)
+
+- **🏠 Automation & Monitoring** *(WIP)*  
+  Home Assistant dashboards, system monitoring and energy tracking
 
 ---
 
 ## 🛠️ Infrastructure Overview
 
-### Networking
-My network is powered by the **TP-Link Omada** ecosystem (ER605 Gateway) and a 1GB link. I focus on network-wide ad blocking via AdGuard and secure remote access through WireGuard.
+My network is built around the **TP-Link Omada ecosystem**:
 
-### Monitoring & Energy
-I use **Home Assistant** to monitor system health and energy consumption. 
-- **Current Load**: ~12 Containers and 3 VMs active. (24/7)
-- **Energy Tracking**: Real-time wattage monitoring for the Server and Main Setup via smart sockets.
+- ER605 Gateway with managed switching and access points
+- VLAN segmentation:
+  - Main Network
+  - IoT Devices
+  - Servers / Infrastructure
+- Centralized DNS filtering with AdGuard Home
+- Secure remote access via WireGuard VPN
+
+---
+
+## ⚡ Monitoring & Energy
+
+Using **Home Assistant** for real-time monitoring and automation:
+
+- 📊 System health and service monitoring
+- ⚡ Real-time power consumption tracking
+- 🌡️ Environmental sensors (temperature / humidity)
+- 🔌 Smart plugs for analytics and automation
 
 ---
